@@ -1,23 +1,23 @@
-require("dotenv").config()
-const express = require("express")
+require('dotenv').config();
+const express = require('express');
 const app = express();
-const cors = require("cors")
-const port = process.env.PORT || 8000
-const passport = require("passport")
-
+const cors = require('cors');
+const port = process.env.PORT || 8000;
+const passport = require('passport');
+const users = require('./routes/api/users')
+// middleware
 app.use(cors());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
-//passport middleware
+// passport middleware
 app.use(passport.initialize());
+// import passport filr into server
+require('./config/passport')(passport);
 
-require("./confige/passport")(passport)
-
-app.get("/", (req, res)=>{
-    res.status(200).json({message: " Smile, you're being watched from the backend👀"})
-    // res.send("Backend home route")
+app.get('/', (req, res)=> {
+    res.status(200).json({ message: 'Smile you been watch by Backend Team'})
 })
-
+app.use('/api/users', users)
 app.listen(port, ()=>{
-    console.log("I couldnt see what rome typed in time")
+    console.log(`Server is running on port: ${port}`)
 })
