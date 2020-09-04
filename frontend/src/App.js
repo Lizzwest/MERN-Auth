@@ -8,15 +8,15 @@ import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
 import About from "./components/About"
 import './App.css';
-// import Login from "./components/Login"
+import Login from "./components/Login"
 import Signup from "./components/Signup"
-// import Profile from "./components/Profile"
+import Profile from "./components/Profile"
 
 
 const PrivateRoute = ({ component: Component, ...rest}) =>{
   const user = localStorage.getItem("jwtToken")
   return <Route {...rest} render={(props)=>{
-    return user ? <Component {...rest}{...props} /> : <Redirect to="/login" />
+    return user ? <Component {...rest} {...props} /> : <Redirect to="/login" />
   }}
   />
 }
@@ -58,13 +58,13 @@ function App() {
       <div className="container mt-5">
         <Switch >
           <Route path='/signup' component={Signup} />
-          {/* <Route 
+          <Route 
             path="/login" 
-            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
+            render={(props) => <Login {...props} setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
               />
               <Route path="/about" component={About}/>
               <PrivateRoute path="/profile" component={Profile} user={currentUser}/>
-              <Route exact path="/" component={Welcome}/> */}
+              <Route exact path="/" component={Welcome}/>
         </Switch>
       </div>
     <Footer/>

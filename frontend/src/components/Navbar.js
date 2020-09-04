@@ -5,7 +5,7 @@ const Navbar = (props) =>{
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
-                <Link classname="navbar-brand">
+                <Link to="/" className="navbar-brand">
                     MERN Auth
                 </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="#navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
