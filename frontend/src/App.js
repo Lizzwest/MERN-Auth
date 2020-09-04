@@ -8,9 +8,9 @@ import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
 import About from "./components/About"
 import './App.css';
-import Login from "./components/Login"
+// import Login from "./components/Login"
 import Signup from "./components/Signup"
-import Profile from "./components/Profile"
+// import Profile from "./components/Profile"
 
 
 const PrivateRoute = ({ component: Component, ...rest}) =>{
@@ -28,7 +28,7 @@ function App() {
   useEffect(()=>{
     let token;
     if(!localStorage.getItem('jwtToken')){
-      isAuthenticated(false)
+      setIsAuthenticated(false)
     }else{
       token = jwt_decode(localStorage.getItem('jwtToken'))
       setAuthToken(localStorage.jwtToken)
@@ -58,13 +58,13 @@ function App() {
       <div className="container mt-5">
         <Switch >
           <Route path='/signup' component={Signup} />
-          <Route 
+          {/* <Route 
             path="/login" 
             render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
               />
               <Route path="/about" component={About}/>
               <PrivateRoute path="/profile" component={Profile} user={currentUser}/>
-              <Route exact path="/" component={Welcome}/>
+              <Route exact path="/" component={Welcome}/> */}
         </Switch>
       </div>
     <Footer/>
